@@ -1,0 +1,45 @@
+const formElements = [
+  {
+    element: "input",
+    id: "firstName",
+    class: "inputForm",
+    type: "text",
+    placeholder: "First Name",
+    value: null,
+  },
+  {
+    element: "input",
+    id: "lastName",
+    class: "inputForm",
+    type: "text",
+    placeholder: "Last Name",
+    value: null,
+  },
+  {
+    element: "input",
+    id: "email",
+    class: "inputForm",
+    type: "email",
+    placeholder: "Email Address",
+    value: null,
+  },
+  {
+    element: "input",
+    id: "password",
+    class: "inputForm",
+    type: "password",
+    placeholder: "Password",
+    minlength: 8,
+    value: null,
+  },
+  {
+    element: "input",
+    id: "submit",
+    class: "inputForm submitButton",
+    type: "submit",
+    placeholder: null,
+    isRequired: null,
+    value: "claim your free trial",
+  },
+];
+module.exports = formElements;
