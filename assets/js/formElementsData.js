@@ -5,6 +5,7 @@ const formElements = [
     class: "inputForm",
     type: "text",
     placeholder: "First Name",
+    required: true,
     value: null,
   },
   {
@@ -13,6 +14,7 @@ const formElements = [
     class: "inputForm",
     type: "text",
     placeholder: "Last Name",
+    required: true,
     value: null,
   },
   {
@@ -21,6 +23,7 @@ const formElements = [
     class: "inputForm",
     type: "email",
     placeholder: "Email Address",
+    required: true,
     value: null,
   },
   {
@@ -30,6 +33,7 @@ const formElements = [
     type: "password",
     placeholder: "Password",
     minlength: 8,
+    required: true,
     value: null,
   },
   {
@@ -38,8 +42,10 @@ const formElements = [
     class: "inputForm submitButton",
     type: "submit",
     placeholder: null,
-    isRequired: null,
+    required: false,
     value: "claim your free trial",
   },
 ];
-module.exports = formElements;
+export default formElements;
+// using for testing
+// module.exports = formElements;

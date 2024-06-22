@@ -1,0 +1,245 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+#submit, .offer-text, #information-section {
+  color: white;
+}
+
+input::placeholder, input {
+  color: hsl(249, 10%, 26%);
+}
+
+.term-service-text a, .input-error-message, .show-input-error::placeholder, .show-input-error {
+  color: hsl(0, 100%, 74%);
+}
+
+#submit, .content, main {
+  display: flex;
+}
+
+.content, main {
+  flex-flow: column wrap;
+}
+
+#submit {
+  align-items: center;
+  justify-content: center;
+}
+
+.input-wrapper, .form-container {
+  height: auto;
+}
+
+#submit, .error-icon, .show-input-error {
+  transition: all 0.3s ease-in-out;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: hsl(0, 100%, 74%);
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: cover;
+  background-image: url("../images/bg-intro-mobile.png");
+}
+
+main {
+  margin: 6.25rem 1.5625rem 4.375rem;
+  gap: 4.3125rem;
+}
+
+#information-section {
+  text-align: center;
+}
+
+.content {
+  gap: 2.5rem;
+}
+
+.main-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.main-description {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.offer-text {
+  background-color: hsl(248, 32%, 49%);
+  padding: 1.3rem 4.5rem;
+  font-size: 0.9rem;
+  font-weight: normal;
+  box-shadow: 0 7px 2px 0 #cb6364;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+.offer-text span {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.form-container {
+  background-color: white;
+  margin-top: 1.5625rem;
+  padding: 1.5625rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 7px 2px 0 #cb6364;
+}
+
+.input-wrapper {
+  width: auto;
+  position: relative;
+}
+
+input {
+  border: 1px solid;
+  outline: none;
+  height: 3.43rem;
+  width: 100%;
+  display: block;
+  margin-top: 1.25rem;
+  font-size: normal;
+  font-weight: 800;
+  padding: 0 1.25rem;
+  border-radius: 0.3rem;
+  border-color: hsl(246, 25%, 77%);
+}
+input::placeholder {
+  font-family: "Poppins";
+  font-weight: 700;
+}
+input:focus {
+  border-color: hsl(249, 10%, 26%);
+}
+
+#firstName {
+  margin-top: 0;
+}
+
+.show-input-error {
+  outline: 2px solid hsl(0, 100%, 74%);
+  border-color: hsl(0, 100%, 74%);
+}
+.input-error-message {
+  margin-top: 0.35rem;
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.error-icon {
+  position: absolute;
+  top: -25px;
+  bottom: 0;
+  right: 1rem;
+  margin: auto;
+  opacity: 0;
+}
+
+.show-input-error + .input-error-message + .error-icon {
+  opacity: 1;
+}
+
+#submit {
+  background-color: hsl(154, 59%, 51%);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  box-shadow: 0 7px 2px 0 #32b97f;
+}
+#submit:hover {
+  background-color: hsl(154.21, 64.85%, 67.65%);
+}
+
+.term-service-text {
+  height: 2.8rem;
+  margin-top: 1.5625rem;
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: hsl(246, 25%, 77%);
+  text-align: center;
+}
+.term-service-text a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    margin: 3rem 5.325rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  body {
+    background-image: url("../images/bg-intro-desktop.png");
+  }
+  main {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    gap: 2rem;
+    margin: 0 5.325rem;
+  }
+  #information-section,
+  #form-section {
+    flex: 1;
+  }
+  #information-section {
+    text-align: left;
+  }
+  .main-title {
+    font-size: 3rem;
+    line-height: 3.3rem;
+  }
+  .main-description {
+    font-size: 0.9rem;
+    line-height: 1.7rem;
+  }
+  #information-section .content {
+    gap: 2.5rem;
+  }
+  .offer-text {
+    padding: 1rem 0;
+  }
+  #form-section .content {
+    gap: 0;
+  }
+  .form-container {
+    padding: 2.5625rem;
+  }
+  .term-service-text {
+    height: 0;
+    margin-bottom: 1.1625rem;
+    font-size: 0.7rem;
+    font-weight: normal;
+  }
+}
+@media screen and (min-width: 1440px) {
+  main {
+    margin: 0 10.325rem;
+  }
+  .main-description {
+    font-size: 1rem;
+  }
+  input {
+    padding: 0 2.25rem;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

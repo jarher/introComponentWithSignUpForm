@@ -1,103 +1,67 @@
-const errorMessages = {
-  firstNameError: {
-    valueMissing: "First name cannot be empty",
-    errorType: "Characters other than letters are not accepted",
-  },
-  lastNameError: {
-    valueMissing: "Last name cannot be empty",
-    errorType: "Characters other than letters are not accepted",
-  },
-  emailError: {
-    valueMissing: "Email cannot be empty",
-    errorType: "Looks like this is not an email",
-  },
-  passwordError: {
-    valueMissing: "Password cannot be empty",
-    errorType:
-      "Your password must be at least 8 characters, a capital letter, a number, and a special character",
-  },
-};
-
 class Validate {
   constructor() {
-    //regular expressions
-    this.regExpText = /[a-z\s]/gi;
-    this.regExpEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/gi;
+    // Regular expressions
+    this.regExpText = /[a-z]/i;
+    this.regExpEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     this.regExpPassword =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-    document.querySelector("form").addEventListener("submit", function () {
-      this.preventDefault();
-    });
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    this.submitBtn = document.getElementById("submit");
   }
 
-  showErrorMessage(selector, message) {
-    const selectorString = `${selector} + .input-error-message`;
-    document.querySelector(selectorString).innerText = message;
+  disabledSubmitBtn(isValid) {
+    !isValid
+      ? (this.submitBtn.disabled = true)
+      : (this.submitBtn.disabled = false);
   }
 
-  firstNameValidate() {
-    //regular expression to evaluate input text
-    const firstName = document.getElementById("firstName");
-    const isValid = this.regExpText.test(firstName.value);
-    if (!firstName.value) {
-      this.showErrorMessage(
-        "#firstName",
-        errorMessages.firstNameError.valueMissing
-      );
-      return;
+  validator(inputElement) {
+    const type = inputElement.getAttribute("type");
+    const id = inputElement.getAttribute("id");
+    const inputValue = inputElement.value.trim();
+
+    let isValid;
+
+    if (type === "text") {
+      isValid = this.regExpText.test(inputValue);
+    }
+    if (type === "email") {
+      isValid = this.regExpEmail.test(inputValue);
+    }
+    if (type === "password") {
+      isValid = this.regExpPassword.test(inputValue);
+    }
+    if (inputValue === "") {
+      return { isEmpty: true, isValid: false, type, id };
     }
     if (!isValid) {
-      this.showErrorMessage(
-        "#firstName",
-        errorMessages.firstNameError.errorType
-      );
-      return;
+      return { isEmpty: false, isValid: false, type, id };
     }
+    return { isEmpty: false, isValid: true, type, id };
   }
 
-  lastNameValidate() {
-    const lastName = document.getElementById("lastName");
-    const isValid = this.regExpText.test(lastName.value);
-    if (!lastName.value) {
-      this.showErrorMessage(
-        "#lastName",
-        errorMessages.lastNameError.valueMissing
-      );
-      return;
-    }
-    if (!isValid) {
-      this.showErrorMessage("#lastName", errorMessages.lastNameError.errorType);
-      return;
-    }
+  listenInputs(inputElement) {
+    const result = this.validator(inputElement);
+    const { isValid } = result;
+    this.disabledSubmitBtn(isValid);
+    return result;
   }
 
-  emailValidate() {
-    const email = document.getElementById("email");
-    const isValid = this.regExpEmail.test(email.value);
-    if (!email.value) {
-      this.showErrorMessage("#email", errorMessages.emailError.valueMissing);
-      return;
-    }
-    if (!isValid) {
-      this.showErrorMessage("#email", errorMessages.emailError.errorType);
-    }
-  }
+  submit(e, inputs) {
+    const inputStates = [];
+    e.preventDefault();
+    Array.from(inputs)
+      .filter((input) => {
+        if (input.getAttribute("placeholder") !== "") {
+          return input;
+        }
+      })
+      .forEach((element) => inputStates.push(this.listenInputs(element)));
 
-  passwordValidate() {
-    const password = document.getElementById("password");
-    const isValid = this.regExpPassword.test(password.value);
-    if (!password.value) {
-      this.showErrorMessage(
-        "#password",
-        errorMessages.passwordError.valueMissing
-      );
-      return;
-    }
-    if (!isValid) {
-      this.showErrorMessage("#password", errorMessages.passwordError.errorType);
-      return;
-    }
+    return inputStates;
   }
 }
 
-module.exports = Validate;
+export default Validate;
+
+//using for testing
+// module.exports = Validate;

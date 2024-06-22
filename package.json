@@ -4,7 +4,8 @@
   "description": "<!-- # Frontend Mentor - Intro component with sign up form solution",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "sassCompiler": "sass assets/scss/styles.scss assets/css/styles.css"
   },
   "keywords": [],
   "author": "Jeffer Andrés Rojas Herrera (Jarher)",

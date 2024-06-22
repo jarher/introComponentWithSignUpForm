@@ -1,0 +1,284 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+
+$Red: hsl(0, 100%, 74%);
+$Green: hsl(154, 59%, 51%);
+$Blue: hsl(248, 32%, 49%);
+$Dark-Blue: hsl(249, 10%, 26%);
+$Grayish-Blue: hsl(246, 25%, 77%);
+$White: white;
+$Unit-1_5625: 1.5625rem;
+
+@mixin borderRounded($value) {
+  border-radius: #{$value};
+}
+@mixin fontColor($value) {
+  color: $value;
+}
+@mixin textAlign($value) {
+  text-align: $value;
+}
+@mixin fontProperties($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+@mixin gapValue($value) {
+  gap: $value;
+}
+@mixin margins($values) {
+  margin: $values;
+}
+@mixin paddins($values) {
+  padding: $values;
+}
+@mixin boxShadow($color) {
+  box-shadow: 0 7px 2px 0 $color;
+}
+@mixin borderColor($value) {
+  border-color: $value;
+}
+@mixin textAlign($value) {
+  text-align: $value;
+}
+%font-white {
+  color: $White;
+}
+%font-dark-blue {
+  color: $Dark-Blue;
+}
+%font-red {
+  color: $Red;
+}
+%display-flex {
+  display: flex;
+}
+%column-wrap {
+  flex-flow: column wrap;
+}
+%flex-center-horizontal-vertical {
+  align-items: center;
+  justify-content: center;
+}
+%height-auto {
+  height: auto;
+}
+%transition_3ms {
+  transition: all 0.3s ease-in-out;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: $Red;
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: cover;
+  background-image: url("../images/bg-intro-mobile.png");
+}
+
+main {
+  $margin: 6.25rem $Unit-1_5625 4.375rem;
+  @include margins($margin);
+  @include gapValue(4.3125rem);
+  @extend %display-flex;
+  @extend %column-wrap;
+}
+#information-section {
+  @include textAlign(center);
+  @extend %font-white;
+}
+.content {
+  @extend %display-flex;
+  @extend %column-wrap;
+  @include gapValue(2.5rem);
+}
+.main-title {
+  @include fontProperties(1.7rem, 800);
+}
+.main-description {
+  @include fontProperties(1rem, 400);
+}
+.offer-text {
+  background-color: $Blue;
+  $padding: 1.3rem 4.5rem;
+  @include paddins($padding);
+  @include fontProperties(0.9rem, normal);
+  @include boxShadow(#cb6364);
+  @include borderRounded(0.5rem);
+  @extend %font-white;
+  @include textAlign(center);
+
+  span {
+    @include fontProperties(1rem, 400);
+  }
+}
+.form-container {
+  background-color: $White;
+  margin-top: $Unit-1_5625;
+  @extend %height-auto;
+  @include paddins($Unit-1_5625);
+  @include borderRounded(0.5rem);
+  @include boxShadow(#cb6364);
+}
+.input-wrapper {
+  width: auto;
+  position: relative;
+  @extend %height-auto;
+}
+input {
+  border: 1px solid;
+  outline: none;
+  height: 3.43rem;
+  width: 100%;
+  display: block;
+  margin-top: 1.25rem;
+  $padding: 0 1.25rem;
+  @include fontProperties(normal, 800);
+  @include paddins($padding);
+  @include borderRounded(0.3rem);
+  @include borderColor($Grayish-Blue);
+  @extend %font-dark-blue;
+
+  &::placeholder {
+    @extend %font-dark-blue;
+    font-family: "Poppins";
+    font-weight: 700;
+  }
+  &:focus {
+    @include borderColor($Dark-Blue);
+  }
+}
+#firstName {
+  margin-top: 0;
+}
+.show-input-error {
+  outline: 2px solid $Red;
+  @include borderColor($Red);
+  @extend %transition_3ms;
+  @extend %font-red;
+  &::placeholder {
+    @extend %font-red;
+  }
+}
+.input-error-message {
+  margin-top: 0.35rem;
+  display: block;
+  @include fontProperties(0.7rem, 500);
+  @extend %font-red;
+  @include textAlign(right);
+}
+.error-icon {
+  position: absolute;
+  top: -25px;
+  bottom: 0;
+  right: 1rem;
+  margin: auto;
+  opacity: 0;
+  @extend %transition_3ms;
+}
+.show-input-error + .input-error-message + .error-icon {
+  opacity: 1;
+}
+#submit {
+  background-color: $Green;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+  @include boxShadow(#32b97f);
+  @extend %display-flex;
+  @extend %flex-center-horizontal-vertical;
+  @extend %font-white;
+  @extend %transition_3ms;
+  &:hover {
+    background-color: hsl(154.21deg 64.85% 67.65%);
+  }
+}
+.term-service-text {
+  height: 2.8rem;
+  margin-top: $Unit-1_5625;
+  @include fontProperties(0.75rem, normal);
+  @include fontColor($Grayish-Blue);
+  @include textAlign(center);
+  a {
+    @extend %font-red;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
+@media screen and (min-width: 768px) {
+  main {
+    $margin: 3rem 5.325rem;
+    @include margins($margin);
+  }
+}
+@media screen and (min-width: 1024px) {
+  body {
+    background-image: url("../images/bg-intro-desktop.png");
+  }
+  main {
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    $margin: 0 5.325rem;
+    @include gapValue(2rem);
+    @include margins($margin);
+    @extend %display-flex;
+  }
+  #information-section,
+  #form-section {
+    flex: 1;
+  }
+  #information-section {
+    @include textAlign(left);
+  }
+  .main-title {
+    font-size: 3rem;
+    line-height: 3.3rem;
+  }
+  .main-description {
+    font-size: 0.9rem;
+    line-height: 1.7rem;
+  }
+  #information-section .content {
+    @include gapValue(2.5rem);
+  }
+  .offer-text {
+    $padding: 1rem 0;
+    @include paddins($padding);
+  }
+  #form-section .content {
+    @include gapValue(0);
+  }
+  .form-container {
+    @include paddins($Unit-1_5625 + 1);
+  }
+  .term-service-text {
+    height: 0;
+    margin-bottom: 1.1625rem;
+    @include fontProperties(0.7rem, normal);
+  }
+}
+@media screen and (min-width: 1440px) {
+  main {
+    $margin: 0 10.325rem;
+    @include margins($margin);
+  }
+  .main-description {
+    font-size: 1rem;
+  }
+  input {
+    $padding: 0 2.25rem;
+    @include paddins($padding);
+  }
+}

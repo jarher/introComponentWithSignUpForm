@@ -1,12 +1,38 @@
-// import { createFormElements } from "./formTemplate.js";
-// import { Validate } from "./validateForm.js";
+import Messages from "./errorMessages.js";
+import formElements from "./formElementsData.js";
+import FormTemplate from "./formTemplate.js";
+import Validate from "./validateForm.js";
 
-// createFormElements();
+const template = new FormTemplate();
 
-// const lastNameInput = new Validate(document.getElementById("firstName"));
+template.renderFormElements(
+  document.querySelector("form"),
+  template.createFormElements(formElements)
+);
 
-// document.addEventListener("keydown", (e) => {
-//   if (e.target.id === "firstName") {
-//     lastNameInput.validateFirstName();
-//   }
-// });
+const form = document.querySelector("form");
+
+const validate = new Validate();
+
+document.addEventListener("input", (e) => {
+  const inputElement = document.getElementById(e.target.id);
+  const validationMessages = new Messages(validate.listenInputs(inputElement));
+  validationMessages.checkStates();
+});
+
+form.addEventListener("submit", (e) => {
+  const inputs = document.querySelectorAll("input");
+  const validStates = validate.submit(e, inputs);
+
+  validStates.forEach((state) => {
+    const validationMessages = new Messages(state);
+    validationMessages.checkStates();
+  });
+
+  if (validStates.every((state) => state.isValid)) {
+    alert("Thanks for submit your data");
+    Array.from(inputs)
+      .filter((input) => input.getAttribute("type") !== "submit")
+      .forEach((input) => (input.value = ""));
+  }
+});
