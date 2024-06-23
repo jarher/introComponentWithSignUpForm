@@ -41,7 +41,6 @@ const formElements = [
     id: "submit",
     class: "inputForm submitButton",
     type: "submit",
-    required: false,
     value: "claim your free trial",
   },
 ];
