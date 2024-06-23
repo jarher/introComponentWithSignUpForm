@@ -21,18 +21,21 @@ class FormTemplate {
       errorImg.setAttribute("src", "./assets/images/icon-error.svg");
       errorImg.setAttribute("alt", "error icon");
       //get attributes and values to input
+      if (rest.hasOwnProperty("placeholder")) {
+        input.setAttribute("placeholder", rest.placeholder);
+        delete rest["placeholder"];
+      }
+      if (rest.hasOwnProperty("required")) {
+        input.setAttribute("required", "");
+        delete rest["required"];
+      }
+
       const entries = Object.entries(rest);
       for (let [key, value] of entries) {
-        if (key === "required") {
-          if (value) {
-            input.setAttribute(key, "");
-          }
-        } else {
-          input.setAttribute(
-            key === "value" ? "value" : key,
-            value !== null ? value : ""
-          );
-        }
+        input.setAttribute(
+          key === "value" ? "value" : key,
+          value !== null ? value : ""
+        );
       }
       inputWrapper.appendChild(input);
       inputWrapper.appendChild(errorMessage);

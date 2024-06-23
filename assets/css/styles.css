@@ -14,7 +14,7 @@
   color: white;
 }
 
-input::placeholder, input {
+input {
   color: hsl(249, 10%, 26%);
 }
 
@@ -130,6 +130,7 @@ input {
 input::placeholder {
   font-family: "Poppins-Regular";
   font-weight: 700;
+  color: hsl(246, 25%, 77%);
 }
 input:focus {
   border-color: hsl(249, 10%, 26%);
