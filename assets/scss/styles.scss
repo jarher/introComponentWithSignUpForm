@@ -161,9 +161,9 @@ input {
   @extend %font-dark-blue;
 
   &::placeholder {
-    @extend %font-dark-blue;
     @include fontFamily("Poppins-Regular");
     font-weight: 700;
+    color: $Grayish-Blue;
   }
   &:focus {
     @include borderColor($Dark-Blue);
