@@ -46,6 +46,7 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - [Jest](https://jestjs.io/) - Testing library
+- Sass
 
 ### What I learned
 
