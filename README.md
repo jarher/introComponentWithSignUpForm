@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/intro-component-with-signup-form-html-sass-js-jest-fcx0AdAQbh]
 - Live Site URL: [https://jarher.github.io/introComponentWithSignUpForm/]
 
 ## My process
@@ -66,5 +66,5 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Website - [https://github.com/jarher]
+- Frontend Mentor - [https://www.frontendmentor.io/profile/jarher]
