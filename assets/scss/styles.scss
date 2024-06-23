@@ -1,8 +1,15 @@
 @font-face {
-  font-family: "Poppins";
+  font-family: "Poppins-Regular";
   src: url("../fonts/Poppins-Regular.ttf");
 }
-
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("../fonts/Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: "Poppins-ExtraLight";
+  src: url("../fonts/Poppins-ExtraLight.ttf");
+}
 $Red: hsl(0, 100%, 74%);
 $Green: hsl(154, 59%, 51%);
 $Blue: hsl(248, 32%, 49%);
@@ -16,6 +23,9 @@ $Unit-1_5625: 1.5625rem;
 }
 @mixin fontColor($value) {
   color: $value;
+}
+@mixin fontFamily($value) {
+  font-family: $value;
 }
 @mixin textAlign($value) {
   text-align: $value;
@@ -57,7 +67,7 @@ $Unit-1_5625: 1.5625rem;
 %column-wrap {
   flex-flow: column wrap;
 }
-%flex-center-horizontal-vertical {
+%flex-center {
   align-items: center;
   justify-content: center;
 }
@@ -75,7 +85,7 @@ $Unit-1_5625: 1.5625rem;
 }
 html {
   scroll-behavior: smooth;
-  font-family: "Poppins", sans-serif;
+  @include fontFamily("Poppins-Regular");
 }
 body {
   background-color: $Red;
@@ -103,22 +113,24 @@ main {
 }
 .main-title {
   @include fontProperties(1.7rem, 800);
+  @include fontFamily("Poppins-Bold");
 }
 .main-description {
   @include fontProperties(1rem, 400);
 }
 .offer-text {
   background-color: $Blue;
+  @include fontFamily("Poppins-ExtraLight");
   $padding: 1.3rem 4.5rem;
   @include paddins($padding);
-  @include fontProperties(0.9rem, normal);
+  @include fontProperties(1rem, normal);
   @include boxShadow(#cb6364);
   @include borderRounded(0.5rem);
   @extend %font-white;
   @include textAlign(center);
 
   span {
-    @include fontProperties(1rem, 400);
+    @include fontProperties(1rem, normal);
   }
 }
 .form-container {
@@ -142,7 +154,7 @@ input {
   display: block;
   margin-top: 1.25rem;
   $padding: 0 1.25rem;
-  @include fontProperties(normal, 800);
+  @include fontProperties(1rem, 800);
   @include paddins($padding);
   @include borderRounded(0.3rem);
   @include borderColor($Grayish-Blue);
@@ -150,7 +162,7 @@ input {
 
   &::placeholder {
     @extend %font-dark-blue;
-    font-family: "Poppins";
+    @include fontFamily("Poppins-Regular");
     font-weight: 700;
   }
   &:focus {
@@ -194,9 +206,10 @@ input {
   cursor: pointer;
   width: 100%;
   text-transform: uppercase;
+  @include fontProperties(0.9rem, 400);
   @include boxShadow(#32b97f);
   @extend %display-flex;
-  @extend %flex-center-horizontal-vertical;
+  @extend %flex-center;
   @extend %font-white;
   @extend %transition_3ms;
   &:hover {
@@ -251,7 +264,7 @@ input {
     line-height: 1.7rem;
   }
   #information-section .content {
-    @include gapValue(2.5rem);
+    @include gapValue(2rem);
   }
   .offer-text {
     $padding: 1rem 0;

@@ -1,6 +1,14 @@
 @font-face {
-  font-family: "Poppins";
+  font-family: "Poppins-Regular";
   src: url("../fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("../fonts/Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: "Poppins-ExtraLight";
+  src: url("../fonts/Poppins-ExtraLight.ttf");
 }
 #submit, .offer-text, #information-section {
   color: white;
@@ -43,7 +51,7 @@ input::placeholder, input {
 
 html {
   scroll-behavior: smooth;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins-Regular";
 }
 
 body {
@@ -70,6 +78,7 @@ main {
 .main-title {
   font-size: 1.7rem;
   font-weight: 800;
+  font-family: "Poppins-Bold";
 }
 
 .main-description {
@@ -79,8 +88,9 @@ main {
 
 .offer-text {
   background-color: hsl(248, 32%, 49%);
+  font-family: "Poppins-ExtraLight";
   padding: 1.3rem 4.5rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: normal;
   box-shadow: 0 7px 2px 0 #cb6364;
   border-radius: 0.5rem;
@@ -88,7 +98,7 @@ main {
 }
 .offer-text span {
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: normal;
 }
 
 .form-container {
@@ -111,14 +121,14 @@ input {
   width: 100%;
   display: block;
   margin-top: 1.25rem;
-  font-size: normal;
+  font-size: 1rem;
   font-weight: 800;
   padding: 0 1.25rem;
   border-radius: 0.3rem;
   border-color: hsl(246, 25%, 77%);
 }
 input::placeholder {
-  font-family: "Poppins";
+  font-family: "Poppins-Regular";
   font-weight: 700;
 }
 input:focus {
@@ -160,6 +170,8 @@ input:focus {
   cursor: pointer;
   width: 100%;
   text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 400;
   box-shadow: 0 7px 2px 0 #32b97f;
 }
 #submit:hover {
@@ -212,7 +224,7 @@ input:focus {
     line-height: 1.7rem;
   }
   #information-section .content {
-    gap: 2.5rem;
+    gap: 2rem;
   }
   .offer-text {
     padding: 1rem 0;

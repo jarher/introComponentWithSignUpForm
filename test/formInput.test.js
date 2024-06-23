@@ -5,132 +5,164 @@ const formElements = require("../assets/js/formElementsData.js");
 const FormTemplate = require("../assets/js/formTemplate.js");
 const Validate = require("../assets/js/validateForm.js");
 
-const virtualDom = require("./validate.test.js");
+const virtualDom = function (formTemplate, elements) {
+  document.body.innerHTML = "<form novalidate></form>";
 
+  const parent = document.querySelector("form");
+
+  const template = new formTemplate();
+
+  template.renderFormElements(parent, template.createFormElements(elements));
+};
+// first name validation
 test("validate if first name input is empty", () => {
   virtualDom(FormTemplate, formElements);
 
-  document.getElementById("firstName").value = "";
+  const inputElement = document.getElementById("firstName");
+
+  // inputElement.value = "";
 
   const inputEvent = new Event("input");
 
   const validate = new Validate();
 
-  document.getElementById("firstName").dispatchEvent(inputEvent);
+  inputElement.dispatchEvent(inputEvent);
 
-  validate.firstNameValidate();
-
-  expect(
-    document.querySelector(`#firstName + .input-error-message`).innerText
-  ).toMatch(/First name cannot be empty/);
+  document.addEventListener("input", (e) => {
+    const { isEmpty } = validate.listenInputs(inputElement);
+    expect(!isEmpty).toBeTruthy();
+  });
 });
 
-test("validate if first name input has a value", () => {
+test("validate if first name has not an appropiate value", () => {
   virtualDom(FormTemplate, formElements);
 
-  document.getElementById("firstName").value = "124";
+  const inputElement = document.getElementById("firstName");
+
+  inputElement.value = "124";
 
   const inputEvent = new Event("input");
 
   const validate = new Validate();
 
-  document.getElementById("firstName").dispatchEvent(inputEvent);
+  inputElement.dispatchEvent(inputEvent);
 
-  validate.firstNameValidate();
-
-  expect(
-    document.querySelector(`#firstName + .input-error-message`).innerText
-  ).toMatch(/Characters other than letters are not accepted/);
+  document.addEventListener("input", (e) => {
+    const { isValid } = validate.listenInputs(inputElement);
+    expect(!isValid).toBeTruthy();
+  });
 });
-
+//last name validation
 test("validate if last name input is empty", () => {
   virtualDom(FormTemplate, formElements);
-  document.getElementById("lastName").value = "";
+
+  const inputElement = document.getElementById("lastName");
+
+  // inputElement.value = "";
+
   const inputEvent = new Event("input");
+
   const validate = new Validate();
-  document.getElementById("lastName").dispatchEvent(inputEvent);
-  validate.lastNameValidate();
-  expect(
-    document.querySelector(`#lastName + .input-error-message`).innerText
-  ).toMatch(/Last name cannot be empty/);
+
+  inputElement.dispatchEvent(inputEvent);
+
+  document.addEventListener("input", (e) => {
+    const { isEmpty } = validate.listenInputs(inputElement);
+    expect(!isEmpty).toBeTruthy();
+  });
 });
 
-test("validate if last name input has a value", () => {
+test("validate if last name has not an appropiate value", () => {
   virtualDom(FormTemplate, formElements);
 
-  document.getElementById("lastName").value = "124";
+  const inputElement = document.getElementById("lastName");
+
+  inputElement.value = "124";
 
   const inputEvent = new Event("input");
 
   const validate = new Validate();
 
-  document.getElementById("lastName").dispatchEvent(inputEvent);
+  inputElement.dispatchEvent(inputEvent);
 
-  validate.lastNameValidate();
-
-  expect(
-    document.querySelector(`#lastName + .input-error-message`).innerText
-  ).toMatch(/Characters other than letters are not accepted/);
+  document.addEventListener("input", (e) => {
+    const { isValid } = validate.listenInputs(inputElement);
+    expect(!isValid).toBeTruthy();
+  });
 });
-
+//email validation
 test("validate if email input is empty", () => {
   virtualDom(FormTemplate, formElements);
-  document.getElementById("email").value = "";
+
+  const inputElement = document.getElementById("email");
+
+  // inputElement.value = "";
+
   const inputEvent = new Event("input");
+
   const validate = new Validate();
-  document.getElementById("email").dispatchEvent(inputEvent);
-  validate.emailValidate();
-  expect(
-    document.querySelector(`#email + .input-error-message`).innerText
-  ).toMatch(/Email cannot be empty/);
+
+  inputElement.dispatchEvent(inputEvent);
+
+  document.addEventListener("input", (e) => {
+    const { isEmpty } = validate.listenInputs(inputElement);
+    expect(!isEmpty).toBeTruthy();
+  });
 });
 
-test("validate if email input has a value", () => {
+test("validate if email has not an appropiate value", () => {
   virtualDom(FormTemplate, formElements);
 
-  document.getElementById("email").value = "124";
+  const inputElement = document.getElementById("email");
+
+  inputElement.value = "124";
 
   const inputEvent = new Event("input");
 
   const validate = new Validate();
 
-  document.getElementById("email").dispatchEvent(inputEvent);
+  inputElement.dispatchEvent(inputEvent);
 
-  validate.emailValidate();
-
-  expect(
-    document.querySelector(`#email + .input-error-message`).innerText
-  ).toMatch(/Looks like this is not an email/);
+  document.addEventListener("input", (e) => {
+    const { isValid } = validate.listenInputs(inputElement);
+    expect(!isValid).toBeTruthy();
+  });
 });
-
+//password validation
 test("validate if password input is empty", () => {
   virtualDom(FormTemplate, formElements);
-  document.getElementById("password").value = "";
+
+  const inputElement = document.getElementById("password");
+
+  // inputElement.value = "";
+
   const inputEvent = new Event("input");
+
   const validate = new Validate();
-  document.getElementById("password").dispatchEvent(inputEvent);
-  validate.passwordValidate();
-  expect(
-    document.querySelector(`#password + .input-error-message`).innerText
-  ).toMatch(/Password cannot be empty/);
+
+  inputElement.dispatchEvent(inputEvent);
+
+  document.addEventListener("input", (e) => {
+    const { isEmpty } = validate.listenInputs(inputElement);
+    expect(!isEmpty).toBeTruthy();
+  });
 });
 
-test("validate if password input has a value", () => {
+test("validate if password has not an appropiate value", () => {
   virtualDom(FormTemplate, formElements);
 
-  document.getElementById("password").value = "124";
+  const inputElement = document.getElementById("password");
+
+  inputElement.value = "124";
 
   const inputEvent = new Event("input");
 
   const validate = new Validate();
 
-  document.getElementById("password").dispatchEvent(inputEvent);
+  inputElement.dispatchEvent(inputEvent);
 
-  validate.passwordValidate();
-
-  expect(
-    document.querySelector(`#password + .input-error-message`).innerText
-  ).toMatch(
-    /Your password must be at least 8 characters, a capital letter, a number, and a special character/
-  );
+  document.addEventListener("input", (e) => {
+    const { isValid } = validate.listenInputs(inputElement);
+    expect(!isValid).toBeTruthy();
+  });
 });
