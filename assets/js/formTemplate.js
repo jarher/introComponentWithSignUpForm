@@ -46,6 +46,6 @@ class FormTemplate {
   }
 }
 
-// export default FormTemplate;
+export default FormTemplate;
 // using for testing
-module.exports = FormTemplate;
+// module.exports = FormTemplate;

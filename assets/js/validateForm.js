@@ -61,7 +61,7 @@ class Validate {
   }
 }
 
-// export default Validate;
+export default Validate;
 
 //using for testing
-module.exports = Validate;
+// module.exports = Validate;

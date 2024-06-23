@@ -46,6 +46,6 @@ const formElements = [
     value: "claim your free trial",
   },
 ];
-// export default formElements;
+export default formElements;
 // using for testing
-module.exports = formElements;
+// module.exports = formElements;

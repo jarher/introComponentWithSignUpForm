@@ -14,10 +14,13 @@ const form = document.querySelector("form");
 
 const validate = new Validate();
 
+function runValidation(messages, validation) {
+  const validationMessages = new messages(validation);
+  validationMessages.checkStates();
+}
 document.addEventListener("input", (e) => {
   const inputElement = document.getElementById(e.target.id);
-  const validationMessages = new Messages(validate.listenInputs(inputElement));
-  validationMessages.checkStates();
+  runValidation(Messages, validate.listenInputs(inputElement));
 });
 
 form.addEventListener("submit", (e) => {
@@ -25,8 +28,7 @@ form.addEventListener("submit", (e) => {
   const validStates = validate.submit(e, inputs);
 
   validStates.forEach((state) => {
-    const validationMessages = new Messages(state);
-    validationMessages.checkStates();
+    runValidation(Messages, state);
   });
 
   if (validStates.every((state) => state.isValid)) {
