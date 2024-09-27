@@ -1,40 +1,71 @@
-import Messages from "./errorMessages.js";
-import formElements from "./formElementsData.js";
-import FormTemplate from "./formTemplate.js";
-import Validate from "./validateForm.js";
+import { formValidation } from "./formComponent/mainComponent/myForm.js";
+import renderFormTemplate from "./formComponent/formTemplate/renderTemplate.js";
 
-const template = new FormTemplate();
+renderFormTemplate();
 
-template.renderFormElements(
-  document.querySelector("form"),
-  template.createFormElements(formElements)
-);
+const validatorSchema = {
+  firstName: {
+    type: "string",
+    errors: {
+      string: "Characters other than letters are not accepted",
+      min: "The first name must be at least 3 characters long",
+      required: "cannot be empty",
+    },
+  },
+  lastName: {
+    type: "string",
+    errors: {
+      string: "Characters other than letters are not accepted",
+      min: "The last name must be at least 3 characters long",
+      required: "cannot be empty",
+    },
+  },
+  email: {
+    type: "email",
+    errors: {
+      email: "Looks like this is not an email",
+      required: "Email cannot be empty",
+    },
+  },
+  password: {
+    type: "password",
+    errors: {
+      password:
+        "Your password must be at least 8 characters, a capital letter, a number, and a special character",
+      required: "Password cannot be empty",
+    },
+  },
+};
 
-const form = document.querySelector("form");
+const formEvents = [
+  {
+    eventType: "submit",
+    element: document.querySelector("form"),
+  },
+  {
+    eventType: "blur",
+    element: Array.from(document.querySelectorAll("input")),
+  },
+];
 
-const validate = new Validate();
-
-function runValidation(messages, validation) {
-  const validationMessages = new messages(validation);
-  validationMessages.checkStates();
-}
-document.addEventListener("input", (e) => {
-  const inputElement = document.getElementById(e.target.id);
-  runValidation(Messages, validate.listenInputs(inputElement));
-});
-
-form.addEventListener("submit", (e) => {
-  const inputs = document.querySelectorAll("input");
-  const validStates = validate.submit(e, inputs);
-
-  validStates.forEach((state) => {
-    runValidation(Messages, state);
-  });
-
-  if (validStates.every((state) => state.isValid)) {
-    alert("Thanks for submit your data");
-    Array.from(inputs)
-      .filter((input) => input.getAttribute("type") !== "submit")
-      .forEach((input) => (input.value = ""));
-  }
+formValidation({
+  initialValues: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  },
+  validatorSchema,
+  formEvents,
+  errorOutputSelector: ".input-error-message",
+  formControlAttribute: "form-error",
+  onSubmit: (values) => {
+    const [firstName, lastName, email, password] = values;
+    alert(`Thanks for submit your data.
+      these are your data:
+      first name = ${firstName}
+      last name = ${lastName}
+      email = ${email}
+      password = ${password}`);
+  },
 });

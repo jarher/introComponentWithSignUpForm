@@ -8,7 +8,7 @@ class FormTemplate {
     formElements.forEach((object) => {
       const { element, ...rest } = object;
       const inputWrapper = document.createElement("div");
-      inputWrapper.className = "input-wrapper";
+      inputWrapper.className = "form-wrapper";
 
       const input = document.createElement(element);
 
@@ -25,17 +25,10 @@ class FormTemplate {
         input.setAttribute("placeholder", rest.placeholder);
         delete rest["placeholder"];
       }
-      if (rest.hasOwnProperty("required")) {
-        input.setAttribute("required", "");
-        delete rest["required"];
-      }
 
       const entries = Object.entries(rest);
       for (let [key, value] of entries) {
-        input.setAttribute(
-          key === "value" ? "value" : key,
-          value !== null ? value : ""
-        );
+        input.setAttribute(key, value);
       }
       inputWrapper.appendChild(input);
       inputWrapper.appendChild(errorMessage);

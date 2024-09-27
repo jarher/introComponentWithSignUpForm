@@ -14,11 +14,12 @@
   color: white;
 }
 
-input {
+input,
+button {
   color: hsl(249, 10%, 26%);
 }
 
-.term-service-text a, .input-error-message, .show-input-error::placeholder, .show-input-error {
+.term-service-text a, .input-error-message, .form-error input::placeholder, .form-error input {
   color: hsl(0, 100%, 74%);
 }
 
@@ -35,11 +36,11 @@ input {
   justify-content: center;
 }
 
-.input-wrapper, .form-container {
+.form-wrapper, .form-container {
   height: auto;
 }
 
-#submit, .error-icon, .show-input-error {
+#submit, .error-icon, .form-error input {
   transition: all 0.3s ease-in-out;
 }
 
@@ -109,12 +110,20 @@ main {
   box-shadow: 0 7px 2px 0 #cb6364;
 }
 
-.input-wrapper {
+.form-wrapper {
   width: auto;
   position: relative;
 }
 
-input {
+.form-error input {
+  outline: 2px solid hsl(0, 100%, 74%);
+}
+.form-error .error-icon {
+  opacity: 1;
+}
+
+input,
+button {
   border: 1px solid;
   outline: none;
   height: 3.43rem;
@@ -127,12 +136,14 @@ input {
   border-radius: 0.3rem;
   border-color: hsl(246, 25%, 77%);
 }
-input::placeholder {
+input::placeholder,
+button::placeholder {
   font-family: "Poppins-Regular";
   font-weight: 700;
   color: hsl(246, 25%, 77%);
 }
-input:focus {
+input:focus,
+button:focus {
   border-color: hsl(249, 10%, 26%);
 }
 
@@ -140,10 +151,6 @@ input:focus {
   margin-top: 0;
 }
 
-.show-input-error {
-  outline: 2px solid hsl(0, 100%, 74%);
-  border-color: hsl(0, 100%, 74%);
-}
 .input-error-message {
   margin-top: 0.35rem;
   display: block;
@@ -159,10 +166,6 @@ input:focus {
   right: 1rem;
   margin: auto;
   opacity: 0;
-}
-
-.show-input-error + .input-error-message + .error-icon {
-  opacity: 1;
 }
 
 #submit {

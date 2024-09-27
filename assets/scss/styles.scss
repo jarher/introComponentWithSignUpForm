@@ -40,7 +40,7 @@ $Unit-1_5625: 1.5625rem;
 @mixin margins($values) {
   margin: $values;
 }
-@mixin paddins($values) {
+@mixin paddings($values) {
   padding: $values;
 }
 @mixin boxShadow($color) {
@@ -122,7 +122,7 @@ main {
   background-color: $Blue;
   @include fontFamily("Poppins-ExtraLight");
   $padding: 1.3rem 4.5rem;
-  @include paddins($padding);
+  @include paddings($padding);
   @include fontProperties(1rem, normal);
   @include boxShadow(#cb6364);
   @include borderRounded(0.5rem);
@@ -137,16 +137,30 @@ main {
   background-color: $White;
   margin-top: $Unit-1_5625;
   @extend %height-auto;
-  @include paddins($Unit-1_5625);
+  @include paddings($Unit-1_5625);
   @include borderRounded(0.5rem);
   @include boxShadow(#cb6364);
 }
-.input-wrapper {
+.form-wrapper {
   width: auto;
   position: relative;
   @extend %height-auto;
 }
-input {
+.form-error {
+  input {
+    outline: 2px solid $Red;
+    @extend %transition_3ms;
+    @extend %font-red;
+    &::placeholder {
+      @extend %font-red;
+    }
+  }
+  .error-icon {
+    opacity: 1;
+  }
+}
+input,
+button {
   border: 1px solid;
   outline: none;
   height: 3.43rem;
@@ -155,7 +169,7 @@ input {
   margin-top: 1.25rem;
   $padding: 0 1.25rem;
   @include fontProperties(1rem, 800);
-  @include paddins($padding);
+  @include paddings($padding);
   @include borderRounded(0.3rem);
   @include borderColor($Grayish-Blue);
   @extend %font-dark-blue;
@@ -172,15 +186,7 @@ input {
 #firstName {
   margin-top: 0;
 }
-.show-input-error {
-  outline: 2px solid $Red;
-  @include borderColor($Red);
-  @extend %transition_3ms;
-  @extend %font-red;
-  &::placeholder {
-    @extend %font-red;
-  }
-}
+
 .input-error-message {
   margin-top: 0.35rem;
   display: block;
@@ -197,9 +203,7 @@ input {
   opacity: 0;
   @extend %transition_3ms;
 }
-.show-input-error + .input-error-message + .error-icon {
-  opacity: 1;
-}
+
 #submit {
   background-color: $Green;
   border: none;
@@ -268,13 +272,13 @@ input {
   }
   .offer-text {
     $padding: 1rem 0;
-    @include paddins($padding);
+    @include paddings($padding);
   }
   #form-section .content {
     @include gapValue(0);
   }
   .form-container {
-    @include paddins($Unit-1_5625 + 1);
+    @include paddings($Unit-1_5625 + 1);
   }
   .term-service-text {
     height: 0;
@@ -292,6 +296,6 @@ input {
   }
   input {
     $padding: 0 2.25rem;
-    @include paddins($padding);
+    @include paddings($padding);
   }
 }
