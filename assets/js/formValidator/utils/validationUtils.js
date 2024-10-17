@@ -1,4 +1,4 @@
-import Validator from "../formValidator.js";
+import Validator from "./validator.js";
 import { errorMessageControl } from "./formUtils.js";
 
 export const showValidationErrorMessage = (inputId, validatorSchema, rest) => {

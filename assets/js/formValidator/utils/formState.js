@@ -1,3 +1,4 @@
+import { assignInputValue } from "./formUtils.js";
 import { showValidationErrorMessage } from "./validationUtils.js";
 
 export const changeState = (changeErrorStateProps, inputId) => {
@@ -16,5 +17,15 @@ export const changeErrorState = ({
     if (object.inputId === inputId) {
       object.isInvalid = isInvalid;
     }
+  });
+};
+
+export const setInitialInputStates = (inputFieldKeys, initialValues) => {
+  return inputFieldKeys.map((key) => {
+    assignInputValue(key, initialValues);
+    return {
+      inputId: key,
+      isInvalid: false,
+    };
   });
 };

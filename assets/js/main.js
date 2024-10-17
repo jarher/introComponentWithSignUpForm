@@ -1,5 +1,7 @@
-import { formValidation } from "./formComponent/mainComponent/myForm.js";
 import renderFormTemplate from "./formComponent/formTemplate/renderTemplate.js";
+import validate from "./formValidator/index.js";
+
+const { formValidation, resetValues } = validate;
 
 renderFormTemplate();
 
@@ -37,16 +39,7 @@ const validatorSchema = {
   },
 };
 
-const formEvents = [
-  {
-    eventType: "submit",
-    element: document.querySelector("form"),
-  },
-  {
-    eventType: "blur",
-    element: Array.from(document.querySelectorAll("input")),
-  },
-];
+const formEvents = ["submit", "blur"];
 
 formValidation({
   initialValues: {
@@ -63,9 +56,10 @@ formValidation({
     const [firstName, lastName, email, password] = values;
     alert(`Thanks for submit your data.
       these are your data:
-      first name = ${firstName}
-      last name = ${lastName}
-      email = ${email}
-      password = ${password}`);
+      first name = ${firstName.value}
+      last name = ${lastName.value}
+      email = ${email.value}
+      password = ${password.value}`);
+    resetValues();
   },
 });
