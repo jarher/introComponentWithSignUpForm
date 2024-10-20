@@ -8,7 +8,22 @@ import ValidatorInitialize from "./validatorInitialize.js";
 //that function is invoke inside onSubmit called in formValidation object
 const validate = (function () {
   const formValidation = (data) => {
-    runError(data);
+    const requiredProperties = [
+      "initialValues",
+      "validatorSchema",
+      "formEvents",
+      "errorOutputClass",
+      "formControlClass",
+    ];
+    // throw error if any formValidation property is missing
+    runError(requiredProperties, data);
+    // throw error if any validatorSchema property is missing
+
+    for (let validatorKey of Object.keys(data.validatorSchema)) {
+      const requiredProperties = ["type", "errors"];
+      runError(requiredProperties, data.validatorSchema[validatorKey]);
+    }
+
     new ValidatorInitialize(data, runFormEvents, setInitialInputStates);
   };
   const resetValues = ValidatorInitialize.resetValues;

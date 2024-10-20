@@ -9,30 +9,36 @@ const validatorSchema = {
   firstName: {
     type: "string",
     errors: {
-      string: "Characters other than letters are not accepted",
-      min: "The first name must be at least 3 characters long",
+      message: "Characters other than letters are not accepted",
+      min: {
+        value: 3,
+        message: "The first name must be at least 3 characters long",
+      },
       required: "cannot be empty",
     },
   },
   lastName: {
     type: "string",
     errors: {
-      string: "Characters other than letters are not accepted",
-      min: "The last name must be at least 3 characters long",
+      message: "Characters other than letters are not accepted",
+      min: {
+        value: 3,
+        message: "The last name must be at least 3 characters long",
+      },
       required: "cannot be empty",
     },
   },
   email: {
     type: "email",
     errors: {
-      email: "Looks like this is not an email",
+      message: "Looks like this is not an email",
       required: "Email cannot be empty",
     },
   },
   password: {
     type: "password",
     errors: {
-      password:
+      message:
         "Your password must be at least 8 characters, a capital letter, a number, and a special character",
       required: "Password cannot be empty",
     },
@@ -50,8 +56,8 @@ formValidation({
   },
   validatorSchema,
   formEvents,
-  errorOutputSelector: ".input-error-message",
-  formControlAttribute: "form-error",
+  errorOutputClass: "input-error-message",
+  formControlClass: "form-error",
   onSubmit: (values) => {
     const [firstName, lastName, email, password] = values;
     alert(`Thanks for submit your data.

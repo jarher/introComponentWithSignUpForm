@@ -1,28 +1,18 @@
-export const runError = (data) => {
+export const runError = (requiredProperties, data) => {
   try {
-    validateRequiredProperties(data);
+    validateRequiredProperties(requiredProperties, data);
   } catch (error) {
     console.error(error.message);
   }
 };
 
-const validateRequiredProperties = (data) => {
-  const requiredProperties = [
-    "initialValues",
-    "validatorSchema",
-    "formEvents",
-    "errorOutputSelector",
-    "formControlAttribute",
-  ];
-
+const validateRequiredProperties = (requiredProperties, data) => {
   const missingProperties = requiredProperties.filter(
     (property) => !data.hasOwnProperty(property)
   );
 
   if (missingProperties.length > 0)
     throw new Error(
-      `Missing required properties in form data: ${missingProperties.join(
-        ", "
-      )}`
+      `Missing required properties: ${missingProperties.join(", ")}`
     );
 };
